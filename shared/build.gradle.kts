@@ -15,7 +15,11 @@ kotlin {
         }
     }
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation(Deps.Kotlinx.datetime)
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
@@ -24,7 +28,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("com.google.android.material:material:1.2.1")
+
             }
         }
         val androidTest by getting {
@@ -39,18 +43,27 @@ kotlin {
 }
 android {
     compileSdkVersion(BuildConfig.compileSdkVersion)
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+
     defaultConfig {
         minSdkVersion(BuildConfig.minSdkVersion)
         targetSdkVersion(BuildConfig.targetSdkVersion)
         versionCode = 1
         versionName = "1.0"
+
+        consumerProguardFiles("consumer-rules.pro")
     }
+
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
+
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 }
 val packForXcode by tasks.creating(Sync::class) {
     group = "build"
