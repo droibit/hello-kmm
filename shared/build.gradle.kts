@@ -28,7 +28,6 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-
             }
         }
         val androidTest by getting {
@@ -65,6 +64,7 @@ android {
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 }
+
 val packForXcode by tasks.creating(Sync::class) {
     group = "build"
     val mode = System.getenv("CONFIGURATION") ?: "DEBUG"
