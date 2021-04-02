@@ -1,7 +1,6 @@
 plugins {
     id("com.android.application")
     kotlin("android")
-    id("kotlin-android-extensions")
 }
 
 android {
@@ -26,7 +25,7 @@ android {
     }
 
     compileOptions {
-        coreLibraryDesugaringEnabled = true
+        isCoreLibraryDesugaringEnabled = true
     }
 }
 

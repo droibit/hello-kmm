@@ -5,8 +5,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
     repositories {
-        jcenter()
         google()
+        mavenCentral()
+        jcenter()
     }
     dependencies {
         classpath(Deps.Plugins.kotlin)
@@ -17,8 +18,9 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
         maven(url = "https://kotlin.bintray.com/kotlinx/")
+        jcenter()
     }
 
     plugins.whenPluginAdded {
